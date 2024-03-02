@@ -39,17 +39,17 @@ function PostThread({ userId }: Props) {
     },
   });
 // State variables for checkboxes
-const [isChecked1, setIsChecked1] = useState(true);
-const [isChecked2, setIsChecked2] = useState(true);
+const [isChecked1, setIsChecked1] = useState(false);
+const [isChecked2, setIsChecked2] = useState(false);
  // Checkbox change handlers
  const handleCheckbox1Change = () => {
   setIsChecked1(!isChecked1);
-  console.log(isChecked1);
+ 
 };
 
 const handleCheckbox2Change = () => {
   setIsChecked2(!isChecked2);
-  console.log(isChecked2);
+  
 };
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
     await createThread({
@@ -92,8 +92,8 @@ const handleCheckbox2Change = () => {
             checked={isChecked1}
             onChange={handleCheckbox1Change}
           />
-          <label htmlFor="checkbox1">Disable personal Chat</label>
-          <span className="info-icon" title=" will create a personal chat with your other users">ℹ️</span> {/* Info icon */}
+          <label htmlFor="checkbox1">Enable personal Chat</label>
+          <span className="info-icon" title=" Enables private messaging among your users">ℹ️</span> {/* Info icon */}
           
         </div>
         <div className="flex text-white flex-row gap-2 items-center">
@@ -103,8 +103,8 @@ const handleCheckbox2Change = () => {
             checked={isChecked2}
             onChange={handleCheckbox2Change}
           />
-          <label htmlFor="checkbox2">Disable interaction on your post</label>
-          <span  className="info-icon" title=" this will enable following actions like likes , comment and share">ℹ️</span>
+          <label htmlFor="checkbox2">Enable interaction on your post</label>
+          <span  className="info-icon" title=" Enables functionalities such as liking, commenting, and sharing">ℹ️</span>
         </div>
 
         <Button type='submit' className='bg-primary-500'>
