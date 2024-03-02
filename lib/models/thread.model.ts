@@ -1,9 +1,16 @@
 import mongoose from "mongoose";
+import { boolean } from "zod";
 
 const threadSchema = new mongoose.Schema({
   text: {
     type: String,
     required: true,
+  },
+  checkbox1: {
+    type: Boolean,
+  },
+  checkbox2: {
+    type: Boolean,
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,

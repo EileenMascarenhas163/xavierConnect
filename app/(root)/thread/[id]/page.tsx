@@ -31,8 +31,7 @@ async function page({ params }: { params: { id: string } }) {
           author={thread.author}
           community={thread.community}
           createdAt={thread.createdAt}
-          comments={thread.children}
-        />
+          comments={thread.children} check1={thread.checkbox1} check2={thread.checkbox2}        />
       </div>
 
       <div className='mt-7'>
@@ -55,8 +54,7 @@ async function page({ params }: { params: { id: string } }) {
             community={childItem.community}
             createdAt={childItem.createdAt}
             comments={childItem.children}
-            isComment
-          />
+             check1={childItem.checkbox1} check2={childItem.checkbox2}          />
         ))}
       </div>
     </section>

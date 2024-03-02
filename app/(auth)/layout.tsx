@@ -22,6 +22,8 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         baseTheme: dark,
+        signIn: { baseTheme: dark },
+        signUp: { baseTheme: dark }
       }}
     >
       <html lang='en'>

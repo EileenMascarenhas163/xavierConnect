@@ -12,6 +12,8 @@ interface Result {
   threads: {
     _id: string;
     text: string;
+    checkbox1:boolean;
+    checkbox2:boolean;
     parentId: string | null;
     author: {
       name: string;
@@ -60,23 +62,19 @@ async function ThreadsTab({ currentUserId, accountId, accountType }: Props) {
           currentUserId={currentUserId}
           parentId={thread.parentId}
           content={thread.text}
-          author={
-            accountType === "User"
-              ? { name: result.name, image: result.image, id: result.id }
-              : {
-                  name: thread.author.name,
-                  image: thread.author.image,
-                  id: thread.author.id,
-                }
-          }
-          community={
-            accountType === "Community"
-              ? { name: result.name, id: result.id, image: result.image }
-              : thread.community
-          }
+          check1={thread.checkbox1} check2 ={thread.checkbox2}
+          author={accountType === "User"
+            ? { name: result.name, image: result.image, id: result.id }
+            : {
+              name: thread.author.name,
+              image: thread.author.image,
+              id: thread.author.id,
+            }}
+          community={accountType === "Community"
+            ? { name: result.name, id: result.id, image: result.image }
+            : thread.community}
           createdAt={thread.createdAt}
-          comments={thread.children}
-        />
+          comments={thread.children}       />
       ))}
     </section>
   );

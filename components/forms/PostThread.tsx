@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 import { ThreadValidation } from "@/lib/validations/thread";
 import { createThread } from "@/lib/actions/thread.actions";
+import { useState } from "react";
 
 interface Props {
   userId: string;
@@ -37,13 +38,27 @@ function PostThread({ userId }: Props) {
       accountId: userId,
     },
   });
+// State variables for checkboxes
+const [isChecked1, setIsChecked1] = useState(true);
+const [isChecked2, setIsChecked2] = useState(true);
+ // Checkbox change handlers
+ const handleCheckbox1Change = () => {
+  setIsChecked1(!isChecked1);
+  console.log(isChecked1);
+};
 
+const handleCheckbox2Change = () => {
+  setIsChecked2(!isChecked2);
+  console.log(isChecked2);
+};
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
     await createThread({
       text: values.thread,
       author: userId,
       communityId: organization ? organization.id : null,
       path: pathname,
+      checkbox1: isChecked1,
+      checkbox2: isChecked2,
     });
 
     router.push("/");
@@ -70,9 +85,30 @@ function PostThread({ userId }: Props) {
             </FormItem>
           )}
         />
+  <div className="flex text-white font-light flex-row gap-2 items-center">
+          <input
+            type="checkbox"
+            id="checkbox1"
+            checked={isChecked1}
+            onChange={handleCheckbox1Change}
+          />
+          <label htmlFor="checkbox1">Disable personal Chat</label>
+          <span className="info-icon" title=" will create a personal chat with your other users">ℹ️</span> {/* Info icon */}
+          
+        </div>
+        <div className="flex text-white flex-row gap-2 items-center">
+          <input
+            type="checkbox"
+            id="checkbox2"
+            checked={isChecked2}
+            onChange={handleCheckbox2Change}
+          />
+          <label htmlFor="checkbox2">Disable interaction on your post</label>
+          <span  className="info-icon" title=" this will enable following actions like likes , comment and share">ℹ️</span>
+        </div>
 
         <Button type='submit' className='bg-primary-500'>
-          Post Thread
+          Lets Go
         </Button>
       </form>
     </Form>

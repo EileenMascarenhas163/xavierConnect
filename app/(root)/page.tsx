@@ -29,7 +29,7 @@ async function Home({
 
       <section className='mt-9 flex flex-col gap-10'>
         {result.posts.length === 0 ? (
-          <p className='no-result'>No threads found</p>
+          <p className='no-result'>No post found</p>
         ) : (
           <>
             {result.posts.map((post) => (
@@ -42,8 +42,7 @@ async function Home({
                 author={post.author}
                 community={post.community}
                 createdAt={post.createdAt}
-                comments={post.children}
-              />
+                comments={post.children} check1={post.checkbox1} check2={post.checkbox2}              />
             ))}
           </>
         )}
