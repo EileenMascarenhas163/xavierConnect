@@ -159,12 +159,12 @@ export async function getActivity(userId: string) {
 
     // Find all threads created by the user
     const userThreads = await Thread.find({ author: userId });
-
+    
     // Collect all the child thread ids (replies) from the 'children' field of each user thread
     const childThreadIds = userThreads.reduce((acc, userThread) => {
-      return acc.concat(userThread.children);
-    }, []);
-
+   return acc.concat(userThread.children);
+   }, []);
+  console.log("childThreadIds:", childThreadIds);
     // Find and return the child threads (replies) excluding the ones created by the same user
     const replies = await Thread.find({
       _id: { $in: childThreadIds },
@@ -174,6 +174,9 @@ export async function getActivity(userId: string) {
       model: User,
       select: "name image _id",
     });
+    console.log("replies"+replies);
+
+
 
     return replies;
   } catch (error) {
