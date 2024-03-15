@@ -44,7 +44,7 @@ function ThreadCard({
   isComment,
   check1,check2
 }: Props) { 
-  console.log(check2);
+ 
   return (
     <article
       className={`flex w-full flex-col rounded-xl ${
@@ -73,7 +73,9 @@ function ThreadCard({
               </h4>
             </Link>
 
-            <p className='mt-2 text-small-regular text-light-2'>{content}</p>
+            <p className='mt-2 text-small-regular text-light-2'>{content}</p><br/><br/>
+            <Image src={check2} width={400} height={400} alt="Uploaded Image" />
+
 
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className="flex flex-row gap-2 flex-between">
