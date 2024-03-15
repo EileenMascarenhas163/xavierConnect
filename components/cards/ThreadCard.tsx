@@ -28,7 +28,7 @@ interface Props {
   }[];
   isComment?: boolean;
   check1:boolean;
-  check2:boolean;
+  check2:string;
   
 }
 
@@ -42,8 +42,9 @@ function ThreadCard({
   createdAt,
   comments,
   isComment,
-  check1,
+  check1,check2
 }: Props) { 
+  console.log(check2);
   return (
     <article
       className={`flex w-full flex-col rounded-xl ${

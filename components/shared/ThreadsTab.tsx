@@ -13,7 +13,7 @@ interface Result {
     _id: string;
     text: string;
     checkbox1:boolean;
-    checkbox2:boolean;
+    checkbox2:string;
     parentId: string | null;
     author: {
       name: string;
@@ -62,7 +62,7 @@ async function ThreadsTab({ currentUserId, accountId, accountType }: Props) {
           currentUserId={currentUserId}
           parentId={thread.parentId}
           content={thread.text}
-          check1={thread.checkbox1} check2 ={thread.checkbox2}
+          check1={thread.checkbox1} check2={thread.checkbox2}
           
           author={accountType === "User"
             ? { name: result.name, image: result.image, id: result.id }

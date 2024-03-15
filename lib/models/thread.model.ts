@@ -10,7 +10,7 @@ const threadSchema = new mongoose.Schema({
     type: Boolean,
   },
   checkbox2: {
-    type: Boolean,
+    type: String,
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,

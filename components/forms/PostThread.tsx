@@ -60,7 +60,7 @@ const handleCheckbox2Change = () => {
       communityId: organization ? organization.id : null,
       path: pathname,
       checkbox1: isChecked1,
-      checkbox2: isChecked2,
+      checkbox2: values.file,
     });
 
 
