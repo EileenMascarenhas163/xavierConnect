@@ -36,6 +36,7 @@ function PostThread({ userId }: Props) {
     defaultValues: {
       thread: "",
       accountId: userId,
+      file:"",
     },
   });
 // State variables for checkboxes
@@ -52,6 +53,7 @@ const handleCheckbox2Change = () => {
   
 };
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
+    
     await createThread({
       text: values.thread,
       author: userId,
@@ -60,6 +62,7 @@ const handleCheckbox2Change = () => {
       checkbox1: isChecked1,
       checkbox2: isChecked2,
     });
+
 
     router.push("/");
   };
@@ -85,27 +88,22 @@ const handleCheckbox2Change = () => {
             </FormItem>
           )}
         />
-  <div className="flex text-white font-light flex-row gap-2 items-center">
-          <input
-            type="checkbox"
-            id="checkbox1"
-            checked={isChecked1}
-            onChange={handleCheckbox1Change}
-          />
-          <label htmlFor="checkbox1">Enable personal Chat</label>
-          <span className="info-icon" title=" Enables private messaging among your users">ℹ️</span> {/* Info icon */}
-          
-        </div>
-        <div className="flex text-white flex-row gap-2 items-center">
-          <input
-            type="checkbox"
-            id="checkbox2"
-            checked={isChecked2}
-            onChange={handleCheckbox2Change}
-          />
-          <label htmlFor="checkbox2">Enable interaction on your post</label>
-          <span  className="info-icon" title=" Enables functionalities such as liking, commenting, and sharing">ℹ️</span>
-        </div>
+         <FormField
+          control={form.control}
+          name="file"
+          render={({ field }) => (
+            <FormItem className="flex w-full flex-col gap-3">
+              <FormLabel className="text-base-semibold text-light-2">
+                Upload Images or Videos
+              </FormLabel>
+              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+                <input type="file" {...field} multiple />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
 
         <Button type='submit' className='bg-primary-500'>
           Lets Go

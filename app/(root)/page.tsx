@@ -42,7 +42,8 @@ async function Home({
                 author={post.author}
                 community={post.community}
                 createdAt={post.createdAt}
-                comments={post.children} check1={post.checkbox1} check2={post.checkbox2}              />
+                comments={post.children} check1={post.checkbox1} check2={post.checkbox2}   
+                          />
             ))}
           </>
         )}

@@ -125,8 +125,9 @@ export async function fetchUsers({
     // If the search string is not empty, add the $or operator to match either username or name fields.
     if (searchString.trim() !== "") {
       query.$or = [
-        { username: { $regex: regex } },
+       // { username: { $regex: regex } },
         { name: { $regex: regex } },
+        { bio: { $regex: regex } },
       ];
     }
 

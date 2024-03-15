@@ -63,6 +63,7 @@ async function ThreadsTab({ currentUserId, accountId, accountType }: Props) {
           parentId={thread.parentId}
           content={thread.text}
           check1={thread.checkbox1} check2 ={thread.checkbox2}
+          
           author={accountType === "User"
             ? { name: result.name, image: result.image, id: result.id }
             : {

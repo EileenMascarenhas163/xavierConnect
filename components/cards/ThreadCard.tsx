@@ -29,6 +29,7 @@ interface Props {
   isComment?: boolean;
   check1:boolean;
   check2:boolean;
+  
 }
 
 function ThreadCard({
@@ -41,7 +42,7 @@ function ThreadCard({
   createdAt,
   comments,
   isComment,
-  check1,check2,
+  check1,
 }: Props) { 
   return (
     <article
@@ -75,7 +76,7 @@ function ThreadCard({
 
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className="flex flex-row gap-2 flex-between">
-              {(check1 && check2) ? (
+              {(check1 ) ? (
                 <><div className='flex gap-3.5' style={{ display: "flex", justifyContent: "flex-end" }}>
                 <Image
                   src='/assets/heart-gray.svg'
@@ -114,40 +115,8 @@ function ThreadCard({
                   </button>
                 </div></>
               
-              ) : check2 ? (
-                <div className='flex gap-3.5' style={{ display: "flex", justifyContent: "flex-end" }}>
-                <Image
-                  src='/assets/heart-gray.svg'
-                  alt='heart'
-                  width={24}
-                  height={24}
-                  className='cursor-pointer object-contain'
-                />
-                <Link href={`/thread/${id}`}>
-                  <Image
-                    src='/assets/reply.svg'
-                    alt='heart'
-                    width={24}
-                    height={24}
-                    className='cursor-pointer object-contain'
-                  />
-                </Link>
-                <Image
-                  src='/assets/repost.svg'
-                  alt='heart'
-                  width={24}
-                  height={24}
-                  className='cursor-pointer object-contain'
-                />
-                <Image
-                  src='/assets/share.svg'
-                  alt='heart'
-                  width={24}
-                  height={24}
-                  className='cursor-pointer object-contain'
-                /> </div>
-               
-              ) : check1 ?(
+              )
+               : check1 ?(
                 <div    className='flex gap-3.5' style={{ display: "flex", justifyContent: "flex-end" }}>
                 <button  className="bg-dark-3 hover:bg-dark-4 text-blue w-auto flex items-center font-regular py-2 px-4 rounded">
                  <Image

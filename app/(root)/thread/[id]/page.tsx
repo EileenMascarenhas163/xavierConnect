@@ -54,7 +54,8 @@ async function page({ params }: { params: { id: string } }) {
             community={childItem.community}
             createdAt={childItem.createdAt}
             comments={childItem.children}
-             check1={childItem.checkbox1} check2={childItem.checkbox2}          />
+             check1={childItem.checkbox1} check2={childItem.checkbox2}
+                       />
         ))}
       </div>
     </section>
