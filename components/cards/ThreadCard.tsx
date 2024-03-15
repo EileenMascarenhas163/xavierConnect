@@ -42,8 +42,7 @@ function ThreadCard({
   comments,
   isComment,
   check1,check2,
-}: Props) {
-  console.log(check1);
+}: Props) { 
   return (
     <article
       className={`flex w-full flex-col rounded-xl ${
@@ -162,7 +161,7 @@ function ThreadCard({
 </button>
                 </div>
               ):(
-                <div>
+                <div className='flex gap-3.5' style={{ display: "flex", justifyContent: "flex-end" }}>
                 <Image
                   src='/assets/heart-gray.svg'
                   alt='heart'
@@ -170,8 +169,31 @@ function ThreadCard({
                   height={24}
                   className='cursor-pointer object-contain'
                 />
-                 </div>
-              )}
+                <Link href={`/thread/${id}`}>
+                  <Image
+                    src='/assets/reply.svg'
+                    alt='heart'
+                    width={24}
+                    height={24}
+                    className='cursor-pointer object-contain'
+                  />
+                </Link>
+                <Image
+                  src='/assets/repost.svg'
+                  alt='heart'
+                  width={24}
+                  height={24}
+                  className='cursor-pointer object-contain'
+                />
+                <Image
+                  src='/assets/share.svg'
+                  alt='heart'
+                  width={24}
+                  height={24}
+                  className='cursor-pointer object-contain'
+                /> </div>
+               
+              ) }
            
                 
                 </div>
