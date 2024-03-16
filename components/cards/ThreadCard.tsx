@@ -73,7 +73,7 @@ function ThreadCard({
               </h4>
             </Link>
 
-            <p className='mt-2 text-small-regular text-light-2'>{content}</p><br/><br/>
+            <p className='mt-2  text-light-2'>{content}</p><br/><br/>
              {/* Check if check2 has images */}
              <div>
         {check2.map((url, index) => (
@@ -86,7 +86,7 @@ function ThreadCard({
                 Your browser does not support the video tag.
               </video>
             ) : (
-              <span>Unsupported media type</span>
+              <span></span>
             )}
           </div>
         ))}
