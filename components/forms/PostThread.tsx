@@ -41,54 +41,53 @@ function PostThread({ userId }: Props) {
 
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
-  const [base64, setBase64] = useState<string | null>(null);
+  const [files, setFiles] = useState<File[]>([]); // State to store multiple files
+  const [base64Images, setBase64Images] = useState<string[]>([]);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
     }
-    setFile(e.target.files[0]);
+    const selectedFiles = Array.from(e.target.files);
+    setFiles(selectedFiles);
   };
 
   useEffect(() => {
-    if (file) {
-      const toBase64 = (file: File) => {
-        return new Promise((resolve, reject) => {
-          const fileReader = new FileReader();
-  
-          fileReader.readAsDataURL(file);
-  
-          fileReader.onload = () => {
-            resolve(fileReader.result as string);
-          };
-  
-          fileReader.onerror = (error) => {
-            reject(error);
-          };
-        });
-      };
+    const toBase64 = (file: File) => {
+      return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
 
-      toBase64(file)
-        .then((base64String: string | unknown) => {
-          setBase64(base64String as string);
-        })
-        .catch((error) => {
-         // console.error("Error converting file to base64:", error);
-        });
-    }
-  }, [file]);
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = () => {
+          resolve(fileReader.result as string);
+        };
+
+        fileReader.onerror = (error) => {
+          reject(error);
+        };
+      });
+    };
+    // Convert each file to base64 and store in state
+    Promise.all(files.map(file => toBase64(file)))
+      .then(base64Results => {
+        setBase64Images(base64Results as string[]);
+      })
+      .catch(error => {
+        console.error("Error converting files to base64:", error);
+      });
+  }, [files]);
 
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
-     // Ensure base64 is not null before passing it to createThread
-  const checkbox2Value = base64 || ''; // Provide a default value if base64 is null
+    // Ensure base64Images is not null before passing it to createThread
+    const filesValue = base64Images.length > 0 ? base64Images : ['']; // Provide a default value if base64Images is empty
     await createThread({
       text: values.thread,
       author: userId,
       communityId: organization ? organization.id : null,
       path: pathname,
       checkbox1: isChecked1,
-      checkbox2: checkbox2Value, // Changed from values.file to base64
+      checkbox2: filesValue, // Pass the base64 images array
     });
 
     router.push("/");
@@ -127,7 +126,8 @@ function PostThread({ userId }: Props) {
                 <input
                   type="file"
                   name="avatar"
-                  accept="image/*"
+                  accept="image/*, video/*" // Allow both image and video files
+                  multiple // Allow multiple file selection
                   onChange={onFileChange}
                 />
               </FormControl>

@@ -28,7 +28,7 @@ interface Props {
   }[];
   isComment?: boolean;
   check1:boolean;
-  check2:string;
+  check2:string[];
   
 }
 
@@ -74,8 +74,23 @@ function ThreadCard({
             </Link>
 
             <p className='mt-2 text-small-regular text-light-2'>{content}</p><br/><br/>
-            <Image src={check2} width={400} height={400} alt="Uploaded Image" />
-
+             {/* Check if check2 has images */}
+             <div>
+        {check2.map((url, index) => (
+          <div key={index}>
+            {url.startsWith("data:image/") ? (
+              <img src={url} alt={`Uploaded Image ${index + 1}`} style={{ width: "400px", height: "300px" }} />
+            ) : url.startsWith("data:video/") ? (
+              <video controls style={{ width: "400px", height: "400px" }}>
+                <source src={url} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <span>Unsupported media type</span>
+            )}
+          </div>
+        ))}
+      </div>
 
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className="flex flex-row gap-2 flex-between">

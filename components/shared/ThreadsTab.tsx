@@ -13,7 +13,7 @@ interface Result {
     _id: string;
     text: string;
     checkbox1:boolean;
-    checkbox2:string;
+    checkbox2:string[];
     parentId: string | null;
     author: {
       name: string;

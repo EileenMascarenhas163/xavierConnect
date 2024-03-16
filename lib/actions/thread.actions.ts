@@ -54,7 +54,7 @@ interface Params {
   communityId: string | null,
   path: string,
   checkbox1:boolean,
-  checkbox2:string,
+  checkbox2:string[],
 }
 
 export async function createThread({ text, author, communityId, path,checkbox1,checkbox2 }: Params

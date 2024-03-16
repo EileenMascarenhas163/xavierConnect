@@ -4,7 +4,6 @@ const nextConfig = {
     ignoreBuildErrors:true,
   },
   experimental: {
-    
     serverComponentsExternalPackages: ["mongoose"],
   },
   eslint: {
@@ -30,7 +29,16 @@ const nextConfig = {
         protocol: "https",
         hostname: "placehold.co",
       },
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+      },
     ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb',
+    },
   },
 };
 
