@@ -20,7 +20,7 @@ const SignOutRedirect = () => {
             <line x1="12" y1="16" x2="12.01" y2="16"></line>
           </svg>
         </div>
-        <div className="text-xl font-normal max-w-full flex-initial">
+        <div className="text-3xl font-normal max-w-full flex-initial">
           Please login with your College Email id
         </div>
         <div className="flex flex-auto flex-row-reverse">
@@ -40,10 +40,9 @@ const SignOutRedirect = () => {
         <div className="col-sm-8 offset-sm-2 text-gray-50 text-center -mt-52">
           <div >
             <h1 className="font-sans font-bold">
-              Error 404
             </h1>
           </div>
-          <p className="text-gray-100 mt-2 mb-6">We are sorry, There was Some Error signing you in</p>
+      
           <SignedIn>
           <SignOutButton signOutCallback={() => router.push("/sign-in")}>
             <div >
